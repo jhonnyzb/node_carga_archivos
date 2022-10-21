@@ -1,0 +1,32 @@
+#Comando crear espacio de trabajo
+npx create-nx-workspace SISFV
+
+#instalar dependencias de desarrollo para el scafolding
+npm install --save-dev @nrwl/angular
+
+#creacion app host o shell del proyecto
+nx g @nrwl/angular:host shell
+
+#ejecuta los host y remotos
+npm start
+
+#creacion app remoto(microfrontend) del proyecto
+nx g @nrwl/angular:remote form-session --host=shell
+
+#levantar server local del remoto o el host individualmente
+nx run form-session:serve
+nx run shell:serve
+
+#creación de la lbreria a compartir
+nx g @nrwl/angular:lib data
+nx g @nrwl/angular:lib ui 
+
+#creacion de componente 
+nx g component footer --project=ui --export
+
+#levantar apps seleccionadas
+nx serve shell --devRemotes='form-session,form-pay'
+
+
+
+
